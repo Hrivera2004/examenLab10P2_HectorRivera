@@ -81,6 +81,7 @@ public class simulation extends Thread{
     @Override
     public void run() {
         try {
+            tiempo=0;
             int min=0;
             String ganador ="";
             while (victory!=true) { 

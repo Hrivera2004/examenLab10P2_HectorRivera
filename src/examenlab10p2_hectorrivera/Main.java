@@ -36,9 +36,6 @@ public class Main extends javax.swing.JFrame {
         binario.readFile();
         loadJcombo();
         binario.addtoFile();
-
-        sim = new simulation(jProgressBar_ProgressP1, jProgressBar_ProgressP2, jLabel_timer, jDialog_sim);
-
     }
 
     /**
@@ -423,11 +420,14 @@ public class Main extends javax.swing.JFrame {
     private void jButton_startsimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_startsimMouseClicked
         // TODO add your handling code here:
         if (p1 != null && p2 != null) {
-            sim.setVel1(p1.getVelocidad());
-            sim.setVel2(p2.getVelocidad());
+
             jDialog_sim.pack();
             jDialog_sim.setVisible(true);
+
             jButton_Sim.setEnabled(true);
+            jLabel_timer.setText("0:0");
+            jProgressBar_ProgressP1.setValue(0);
+            jProgressBar_ProgressP2.setValue(0);
 
         }
 
@@ -436,8 +436,13 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton_SimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_SimMouseClicked
         // TODO add your handling code here:
-        sim.start();
         jButton_Sim.setEnabled(false);
+
+        simulation sim = new simulation(jProgressBar_ProgressP1, jProgressBar_ProgressP2, jLabel_timer, jDialog_sim);
+        sim.setVel1(p1.getVelocidad());
+        sim.setVel2(p2.getVelocidad());
+        sim.start();
+
     }//GEN-LAST:event_jButton_SimMouseClicked
 
     private void jComboBox_p2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_p2MouseClicked
@@ -579,7 +584,6 @@ public class Main extends javax.swing.JFrame {
     AdminAutos binario = new AdminAutos("./si.si");
     Auto p1 = null;
     Auto p2 = null;
-    simulation sim = null;
 
     public void loadJcombo() {
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBox_p1.getModel();
