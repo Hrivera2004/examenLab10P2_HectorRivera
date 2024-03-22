@@ -40,10 +40,9 @@ public class AdminAutos {
             ObjectInputStream os = new ObjectInputStream(fs);
             
             try{
-                Auto carro = (Auto)os.readObject();
-                while (carro!=null) {
+                Auto carro = null;
+                while ((carro = (Auto)os.readObject())!=null) {
                     autos.add(carro);
-                    carro = (Auto)os.readObject();
                 }
             }catch(EOFException eof){
             }

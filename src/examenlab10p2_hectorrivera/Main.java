@@ -36,6 +36,9 @@ public class Main extends javax.swing.JFrame {
         binario.readFile();
         loadJcombo();
         binario.addtoFile();
+
+        sim = new simulation(jProgressBar_ProgressP1, jProgressBar_ProgressP2, jLabel_timer, jDialog_sim);
+
     }
 
     /**
@@ -56,6 +59,16 @@ public class Main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSpinner_velocidad = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
+        jDialog_sim = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jProgressBar_ProgressP2 = new javax.swing.JProgressBar();
+        jProgressBar_ProgressP1 = new javax.swing.JProgressBar();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel_timer = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jButton_startSim = new javax.swing.JButton();
         jPanel_principal = new javax.swing.JPanel();
         jButton_showCrear = new javax.swing.JButton();
         jLabel_p1_modelo = new javax.swing.JLabel();
@@ -103,7 +116,79 @@ public class Main extends javax.swing.JFrame {
         jSpinner_velocidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 200, 1));
         jPanel1.add(jSpinner_velocidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 220, -1));
 
+        jLabel12.setText("Crear Auto");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+
         jDialog_CreateAuto.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+
+        jProgressBar_ProgressP2.setMaximum(1000);
+
+        jProgressBar_ProgressP1.setMaximum(1000);
+
+        jLabel8.setText("Jugador 1");
+
+        jLabel10.setText("Jugador 2");
+
+        jLabel_timer.setText("-");
+
+        jLabel16.setText("Timer");
+
+        jButton_startSim.setText("Iniciar");
+        jButton_startSim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_startSimMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel8)
+                    .addComponent(jProgressBar_ProgressP1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                    .addComponent(jProgressBar_ProgressP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_timer, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_startSim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_timer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar_ProgressP1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar_ProgressP2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_startSim)
+                .addGap(20, 20, 20))
+        );
+
+        javax.swing.GroupLayout jDialog_simLayout = new javax.swing.GroupLayout(jDialog_sim.getContentPane());
+        jDialog_sim.getContentPane().setLayout(jDialog_simLayout);
+        jDialog_simLayout.setHorizontalGroup(
+            jDialog_simLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog_simLayout.setVerticalGroup(
+            jDialog_simLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -146,12 +231,32 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jComboBox_p1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_p1ItemStateChanged(evt);
+            }
+        });
+        jComboBox_p1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox_p1MouseClicked(evt);
+            }
+        });
         jComboBox_p1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_p1ActionPerformed(evt);
             }
         });
 
+        jComboBox_p2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_p2ItemStateChanged(evt);
+            }
+        });
+        jComboBox_p2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox_p2MouseClicked(evt);
+            }
+        });
         jComboBox_p2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_p2ActionPerformed(evt);
@@ -269,14 +374,19 @@ public class Main extends javax.swing.JFrame {
         try {
             binario.readFile();
         } catch (Exception e) {
+            e.printStackTrace();
         }
         int speed = (Integer) jSpinner_velocidad.getValue();
-        binario.addAutos(new Auto(jTextField_marca.getText(), jTextField_modelo.getText(), speed));
-        JOptionPane.showMessageDialog(jDialog_CreateAuto, "se creo su auto");
+
+        binario.getAutos().add(new Auto(jTextField_marca.getText(), jTextField_modelo.getText(), speed));
+        for (Auto auto : binario.getAutos()) {
+            System.out.println(auto);
+        }
         loadJcombo();
         try {
             binario.addtoFile();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton_crearMouseClicked
 
@@ -289,8 +399,10 @@ public class Main extends javax.swing.JFrame {
     private void jButton_startsimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_startsimMouseClicked
         // TODO add your handling code here:
         if (p1 != null && p2 != null) {
-            this.setVisible(false);
-
+            sim.setVel1(p1.getVelocidad());
+            sim.setVel2(p2.getVelocidad());
+            jDialog_sim.pack();
+            jDialog_sim.setVisible(true);
         }
 
 
@@ -298,44 +410,81 @@ public class Main extends javax.swing.JFrame {
 
     private void jComboBox_p1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_p1ActionPerformed
         // TODO add your handling code here:
-        try {
+        
+    }//GEN-LAST:event_jComboBox_p1ActionPerformed
+
+    private void jButton_startSimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_startSimMouseClicked
+        // TODO add your handling code here:
+        sim.start();
+    }//GEN-LAST:event_jButton_startSimMouseClicked
+
+    private void jComboBox_p2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_p2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox_p2ActionPerformed
+
+    private void jComboBox_p2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_p2MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jComboBox_p2MouseClicked
+
+    private void jComboBox_p1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_p1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox_p1MouseClicked
+
+    private void jComboBox_p2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_p2ItemStateChanged
+        // TODO add your handling code here:
+                try {
             binario.readFile();
         } catch (Exception e) {
-        }
-        try {
-            p1 = binario.getAutos().get(jComboBox_p1.getSelectedIndex());
-            jLabel_p1_marca.setText(p1.getMarca());
-            jLabel_p1_modelo.setText(p1.getModelo());
-            jLabel_p1_velocidad.setText(p1.getVelocidad() + "");
-        } catch (Exception e) {
+            e.printStackTrace();
 
         }
+        if (jComboBox_p2.getSelectedIndex() != -1) {
+            try {
+                p2 = binario.getAutos().get(jComboBox_p2.getSelectedIndex());
+                jLabel_p2_marca.setText(p2.getMarca());
+                jLabel_p2_modelo.setText(p2.getModelo());
+                jLabel_p2_velocidad.setText(p2.getVelocidad() + "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             binario.addtoFile();
         } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jComboBox_p1ActionPerformed
+            e.printStackTrace();
 
-    private void jComboBox_p2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_p2ActionPerformed
+        }
+    }//GEN-LAST:event_jComboBox_p2ItemStateChanged
+
+    private void jComboBox_p1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_p1ItemStateChanged
         // TODO add your handling code here:
         try {
             binario.readFile();
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        try {
-            p2 = binario.getAutos().get(jComboBox_p2.getSelectedIndex());
-            jLabel_p2_marca.setText(p2.getMarca());
-            jLabel_p2_modelo.setText(p2.getModelo());
-            jLabel_p2_velocidad.setText(p2.getVelocidad() + "");
-        } catch (Exception e) {
-
+        if (jComboBox_p2.getSelectedIndex() != -1) {
+            try {
+                p1 = binario.getAutos().get(jComboBox_p1.getSelectedIndex());
+                jLabel_p1_marca.setText(p1.getMarca());
+                jLabel_p1_modelo.setText(p1.getModelo());
+                jLabel_p1_velocidad.setText(p1.getVelocidad() + "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         try {
             binario.addtoFile();
         } catch (Exception e) {
+            e.printStackTrace();
+
         }
-    }//GEN-LAST:event_jComboBox_p2ActionPerformed
+    }//GEN-LAST:event_jComboBox_p1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -348,7 +497,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -375,21 +524,27 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_crear;
     private javax.swing.JButton jButton_showCrear;
+    private javax.swing.JButton jButton_startSim;
     private javax.swing.JButton jButton_startsim;
     private javax.swing.JComboBox<String> jComboBox_p1;
     private javax.swing.JComboBox<String> jComboBox_p2;
     private javax.swing.JDialog jDialog_CreateAuto;
+    private javax.swing.JDialog jDialog_sim;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_p1_marca;
     private javax.swing.JLabel jLabel_p1_modelo;
@@ -397,8 +552,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_p2_marca;
     private javax.swing.JLabel jLabel_p2_modelo;
     private javax.swing.JLabel jLabel_p2_velocidad;
+    private javax.swing.JLabel jLabel_timer;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_principal;
+    private javax.swing.JProgressBar jProgressBar_ProgressP1;
+    private javax.swing.JProgressBar jProgressBar_ProgressP2;
     private javax.swing.JSpinner jSpinner_velocidad;
     private javax.swing.JTextField jTextField_marca;
     private javax.swing.JTextField jTextField_modelo;
@@ -406,14 +565,19 @@ public class Main extends javax.swing.JFrame {
     AdminAutos binario = new AdminAutos("./si.si");
     Auto p1 = null;
     Auto p2 = null;
+    simulation sim = null;
 
     public void loadJcombo() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBox_p1.getModel();
-        model.removeAllElements();
+        DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBox_p1.getModel();
+        DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBox_p2.getModel();
+
+        model1.removeAllElements();
+        model2.removeAllElements();
         for (Auto auto : binario.getAutos()) {
-            model.addElement(auto.getMarca() + " " + auto.getModelo());
+            model1.addElement(auto.getMarca() + " " + auto.getModelo());
+            model2.addElement(auto.getMarca() + " " + auto.getModelo());
         }
-        jComboBox_p1.setModel(model);
-        jComboBox_p2.setModel(model);
+        jComboBox_p1.setModel(model1);
+        jComboBox_p2.setModel(model2);
     }
 }
