@@ -80,7 +80,6 @@ public class simulation extends Thread{
     @Override
     public void run() {
         try {
-            int seg=0;
             int min=0;
             String ganador ="";
             while (victory!=true) { 
@@ -110,7 +109,7 @@ public class simulation extends Thread{
                 }
                 
             }
-            JOptionPane.showMessageDialog(null, "a ganado "+ ganador+" en "+min+":"+seg);
+            JOptionPane.showMessageDialog(null, "a ganado "+ ganador+" en "+min+":"+tiempo);
         } catch (Exception e) {
         }
     }

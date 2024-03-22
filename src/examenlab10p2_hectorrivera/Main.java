@@ -68,7 +68,8 @@ public class Main extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel_timer = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton_startSim = new javax.swing.JButton();
+        jButton_Sim = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jPanel_principal = new javax.swing.JPanel();
         jButton_showCrear = new javax.swing.JButton();
         jLabel_p1_modelo = new javax.swing.JLabel();
@@ -113,13 +114,15 @@ public class Main extends javax.swing.JFrame {
         jLabel6.setText("modelo");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
-        jSpinner_velocidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 200, 1));
+        jSpinner_velocidad.setModel(new javax.swing.SpinnerNumberModel(100, 1, 200, 1));
         jPanel1.add(jSpinner_velocidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 220, -1));
 
         jLabel12.setText("Crear Auto");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         jDialog_CreateAuto.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jProgressBar_ProgressP2.setMaximum(1000);
 
@@ -129,16 +132,27 @@ public class Main extends javax.swing.JFrame {
 
         jLabel10.setText("Jugador 2");
 
+        jLabel_timer.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel_timer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel_timer.setText("-");
 
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Timer");
 
-        jButton_startSim.setText("Iniciar");
-        jButton_startSim.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton_Sim.setText("Iniciar");
+        jButton_Sim.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_startSimMouseClicked(evt);
+                jButton_SimMouseClicked(evt);
             }
         });
+        jButton_Sim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SimActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel17.setText("Simulacion");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -147,22 +161,31 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel8)
                     .addComponent(jProgressBar_ProgressP1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                     .addComponent(jProgressBar_ProgressP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Sim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel_timer, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton_startSim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel_timer, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel17)
+                .addGap(143, 143, 143))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_timer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -175,7 +198,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBar_ProgressP2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton_startSim)
+                .addComponent(jButton_Sim)
                 .addGap(20, 20, 20))
         );
 
@@ -192,6 +215,8 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel_principal.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton_showCrear.setText("Crear Auto");
         jButton_showCrear.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,6 +256,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jComboBox_p1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBox_p1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox_p1ItemStateChanged(evt);
@@ -247,6 +273,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jComboBox_p2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", " " }));
         jComboBox_p2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox_p2ItemStateChanged(evt);
@@ -267,6 +294,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel14.setText("Jugador 2");
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("Partida");
 
         javax.swing.GroupLayout jPanel_principalLayout = new javax.swing.GroupLayout(jPanel_principal);
@@ -295,7 +323,7 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_principalLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel15)
-                                .addGap(48, 48, 48)))
+                                .addGap(26, 26, 26)))
                         .addGroup(jPanel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jButton_showCrear, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -377,11 +405,7 @@ public class Main extends javax.swing.JFrame {
             e.printStackTrace();
         }
         int speed = (Integer) jSpinner_velocidad.getValue();
-
         binario.getAutos().add(new Auto(jTextField_marca.getText(), jTextField_modelo.getText(), speed));
-        for (Auto auto : binario.getAutos()) {
-            System.out.println(auto);
-        }
         loadJcombo();
         try {
             binario.addtoFile();
@@ -403,88 +427,77 @@ public class Main extends javax.swing.JFrame {
             sim.setVel2(p2.getVelocidad());
             jDialog_sim.pack();
             jDialog_sim.setVisible(true);
+            jButton_Sim.setEnabled(true);
+
         }
 
 
     }//GEN-LAST:event_jButton_startsimMouseClicked
 
-    private void jComboBox_p1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_p1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jComboBox_p1ActionPerformed
-
-    private void jButton_startSimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_startSimMouseClicked
+    private void jButton_SimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_SimMouseClicked
         // TODO add your handling code here:
         sim.start();
-    }//GEN-LAST:event_jButton_startSimMouseClicked
-
-    private void jComboBox_p2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_p2ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jComboBox_p2ActionPerformed
+        jButton_Sim.setEnabled(false);
+    }//GEN-LAST:event_jButton_SimMouseClicked
 
     private void jComboBox_p2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_p2MouseClicked
         // TODO add your handling code here:
+
 
     }//GEN-LAST:event_jComboBox_p2MouseClicked
 
     private void jComboBox_p1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_p1MouseClicked
         // TODO add your handling code here:
-        
+
+
     }//GEN-LAST:event_jComboBox_p1MouseClicked
 
-    private void jComboBox_p2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_p2ItemStateChanged
+    private void jButton_SimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SimActionPerformed
         // TODO add your handling code here:
-                try {
-            binario.readFile();
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-        if (jComboBox_p2.getSelectedIndex() != -1) {
-            try {
-                p2 = binario.getAutos().get(jComboBox_p2.getSelectedIndex());
-                jLabel_p2_marca.setText(p2.getMarca());
-                jLabel_p2_modelo.setText(p2.getModelo());
-                jLabel_p2_velocidad.setText(p2.getVelocidad() + "");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        try {
-            binario.addtoFile();
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-    }//GEN-LAST:event_jComboBox_p2ItemStateChanged
+    }//GEN-LAST:event_jButton_SimActionPerformed
 
     private void jComboBox_p1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_p1ItemStateChanged
         // TODO add your handling code here:
         try {
-            binario.readFile();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (jComboBox_p2.getSelectedIndex() != -1) {
-            try {
-                p1 = binario.getAutos().get(jComboBox_p1.getSelectedIndex());
+            if (jComboBox_p1.getSelectedItem() != null) {
+                p1 = (Auto) jComboBox_p1.getSelectedItem();
                 jLabel_p1_marca.setText(p1.getMarca());
                 jLabel_p1_modelo.setText(p1.getModelo());
                 jLabel_p1_velocidad.setText(p1.getVelocidad() + "");
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        }
 
-        try {
-            binario.addtoFile();
         } catch (Exception e) {
             e.printStackTrace();
-
         }
+
     }//GEN-LAST:event_jComboBox_p1ItemStateChanged
+
+    private void jComboBox_p2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_p2ItemStateChanged
+        // TODO add your handling code here:
+
+        try {
+            if (jComboBox_p2.getSelectedItem() != null) {
+                p2 = (Auto) jComboBox_p2.getSelectedItem();
+                jLabel_p2_marca.setText(p2.getMarca());
+                jLabel_p2_modelo.setText(p2.getModelo());
+                jLabel_p2_velocidad.setText(p2.getVelocidad() + "");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_jComboBox_p2ItemStateChanged
+
+    private void jComboBox_p1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_p1ActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jComboBox_p1ActionPerformed
+
+    private void jComboBox_p2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_p2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_p2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,9 +535,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Sim;
     private javax.swing.JButton jButton_crear;
     private javax.swing.JButton jButton_showCrear;
-    private javax.swing.JButton jButton_startSim;
     private javax.swing.JButton jButton_startsim;
     private javax.swing.JComboBox<String> jComboBox_p1;
     private javax.swing.JComboBox<String> jComboBox_p2;
@@ -538,6 +551,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -573,10 +587,8 @@ public class Main extends javax.swing.JFrame {
 
         model1.removeAllElements();
         model2.removeAllElements();
-        for (Auto auto : binario.getAutos()) {
-            model1.addElement(auto.getMarca() + " " + auto.getModelo());
-            model2.addElement(auto.getMarca() + " " + auto.getModelo());
-        }
+        model1.addAll(binario.getAutos());
+        model2.addAll(binario.getAutos());
         jComboBox_p1.setModel(model1);
         jComboBox_p2.setModel(model2);
     }
